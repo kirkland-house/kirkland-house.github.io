@@ -3,13 +3,15 @@ function GameManager(size, InputManager, Actuator, ScoreManager) {
   this.inputManager = new InputManager;
   this.scoreManager = new ScoreManager;
   this.actuator     = new Actuator;
-
+  
   this.startTiles   = 2;
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
   this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
 
+  this.userName = this.randomName();
+  
   this.setup();
 }
 
@@ -73,6 +75,7 @@ GameManager.prototype.actuate = function () {
   }
 
   this.actuator.actuate(this.grid, {
+    userName:       this.userName,
     score:      this.score,
     over:       this.over,
     won:        this.won,
@@ -243,3 +246,7 @@ GameManager.prototype.tileMatchesAvailable = function () {
 GameManager.prototype.positionsEqual = function (first, second) {
   return first.x === second.x && first.y === second.y;
 };
+
+GameManager.prototype.randomName = function() {
+    return "JTK" + Math.floor(Math.random() * 10000);
+}
