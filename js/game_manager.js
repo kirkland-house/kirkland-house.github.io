@@ -248,5 +248,12 @@ GameManager.prototype.positionsEqual = function (first, second) {
 };
 
 GameManager.prototype.randomName = function() {
-    return "JTK" + Math.floor(Math.random() * 10000);
+  var name;
+  switch(Math.floor(Math.random() * 4)) {
+    case 0: name = "JTK"; break;
+    case 1: name = "BOAR"; break;
+    case 2: name = "ELF"; break;
+    default: name = "DOG";
+  }
+  return "ANON. " + name;
 }
